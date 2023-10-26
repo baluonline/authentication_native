@@ -15,6 +15,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import AppLoading from "expo-app-loading";
 import { useState } from "react";
 
+import Ionicons from "@expo/vector-icons/Ionicons";
+
 function AuthStack() {
   return (
     <Stack.Navigator
@@ -45,9 +47,9 @@ function AuthenticatedStack() {
         name="Welcome"
         component={WelcomeScreen}
         options={{
-          title: "Welcome",
-          headerTitleAlign: "center",
-          headerShown: true,
+          headerRight: ({ tintColor }) => (
+            <Ionicons name="md-checkmark-circle" size={32} />
+          ),
         }}
       />
     </Stack.Navigator>
@@ -67,7 +69,7 @@ function Navigation() {
 function Root(params) {
   const [isTryLogging, setIsTryLogging] = useState(true);
   const authCtx = useContext(AuthContext);
- /*  const authToken = authCtx.token;
+  /*  const authToken = authCtx.token;
   useEffect(() => {
     async function fetchToken() {
       const storedToken = await AsyncStorage.getItem("token");
@@ -101,3 +103,4 @@ const styles = StyleSheet.create({
     alignContent: "center",
   },
 });
+
